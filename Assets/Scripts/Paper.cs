@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider2D))]
 public class Paper : MonoBehaviour
 {
+    private static List<Paper> _papers = new List<Paper>();    
+
     private Camera _camera;
     private Vector3 _startDragMousePosition;
     private Vector3 _startDragPosition;
@@ -12,6 +15,7 @@ public class Paper : MonoBehaviour
 
     private void Awake()
     {
+        _papers.Add(this);
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _camera = GameObject.Find("OfficeCamera").GetComponent<Camera>();
     }
@@ -32,7 +36,12 @@ public class Paper : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _spriteRenderer.sortingOrder += 1;
+        _papers.Remove(this);
+        _papers.Add(this);
+        for (int i = 0; i < _papers.Count; i++)
+        {
+            _papers[i]._spriteRenderer.sortingOrder = i;
+        }
         _dragging = true;
         _startDragMousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         _startDragPosition = transform.position;
