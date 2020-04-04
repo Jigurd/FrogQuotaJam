@@ -18,6 +18,10 @@ public class Movement : MonoBehaviour
     public float jumpHeight = 4;
     public float timeToJumpApex = .4f;
 
+    //controls how fast actor falls
+    [Range(1f, 1.3f)]
+    public float fallSpeedMultiplier = 1.1f;
+
     float gravity;
     public float jumpVelocity;
 
@@ -45,7 +49,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        //sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
+        collision = GetComponent<BoxCollider2D>();
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -53,45 +58,35 @@ public class Movement : MonoBehaviour
 
     }
 
-
     void Update()
     {
-        //if (GameState.Paused)
-        //{
-        //    return;
-        //}
-        HandleMovement();
+        //apply gravity to velocity
+        //if we're falling, apply fallTimeMultiplier to fall faster. This skews our jump arc right.
+        if (velocity.y < 0)
+        {
+            velocity.y += fallSpeedMultiplier * gravity * Time.deltaTime;
+        }
+        else
+        {
+
+            velocity.y += gravity * Time.deltaTime;
+
+        }
+
+
+        //move actor. If we hit the floor, set y-direction velocity to 0
+        Move(velocity * Time.deltaTime);
+
+        if (velocity.y > 0)
+        {
+            velocity.y = 0;
+        }
     }
 
-    void HandleMovement()
-    {
-        //reset horizontal speed
-        velocity.x = 0;
-
-
-        //if the player is jumping, add jump velocity to jump
-        if (Input.GetButtonDown("Jump") && collisions.below)
-        {
-            velocity.y += jumpVelocity;
-        }
-        //move left
-        if (Input.GetButton("Left"))
-        {
-            velocity.x -= moveSpeed;
-            sprite.flipX = false;
-        }
-        //move right
-        if (Input.GetButton("Right"))
-        {
-            velocity.x += moveSpeed;
-            sprite.flipX = true;
-        }
-
-
-    }
-
-
-    //returns true if we hit the floor
+    /// <summary>
+    /// Move the transform by the given vec3
+    /// </summary>
+    /// <param name="velocity"></param>
     public void Move(Vector3 velocity)
     {
         collisions.Reset();
@@ -107,6 +102,8 @@ public class Movement : MonoBehaviour
             VerticalCollisions(ref velocity);
         }
         transform.Translate(velocity);
+
+
     }
 
     void CalculateRaySpacing()
