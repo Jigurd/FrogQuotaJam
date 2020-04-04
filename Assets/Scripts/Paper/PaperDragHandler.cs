@@ -23,7 +23,7 @@ public class PaperDragHandler : MonoBehaviour
                 .Where(paper => paper != null)
                 .OrderByDescending(paper => paper.SpriteRenderer.sortingOrder)
                 .FirstOrDefault();
-            closestPaper.StartDrag();
+            if (closestPaper != null) closestPaper.StartDrag();
         }
     }
 }
