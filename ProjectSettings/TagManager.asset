@@ -47,3 +47,9 @@ TagManager:
   - name: Paper
     uniqueID: 549568605
     locked: 0
+  - name: PaperContents
+    uniqueID: 2000965655
+    locked: 0
+  - name: Stamp
+    uniqueID: 668564705
+    locked: 0

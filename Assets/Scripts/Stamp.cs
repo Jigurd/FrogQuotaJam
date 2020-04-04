@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(Collider2D))]
-public class Paper : MonoBehaviour
+public class Stamp : MonoBehaviour
 {
-    public static List<Paper> Papers { get; set; } = new List<Paper>();    
+    public static List<Stamp> Stamps { get; set; } = new List<Stamp>();
+
+    [SerializeField] private GameObject _stampMarkPrefab = null;
 
     private Camera _camera;
     private Vector3 _startDragMousePosition;
@@ -16,10 +17,10 @@ public class Paper : MonoBehaviour
 
     private void Awake()
     {
-        Papers.Add(this);
+        Stamps.Add(this);
         SpriteRenderer = GetComponent<SpriteRenderer>();
         _camera = GameObject.Find("OfficeCamera").GetComponent<Camera>();
-        SortPapers();
+        SortStamps();
     }
 
     // Update is called once per frame
@@ -34,24 +35,38 @@ public class Paper : MonoBehaviour
                 position.y,
                 transform.position.z
             );
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                Debug.Log(DragHandler.GetTopPaperUnderMouse());
+                var paper = DragHandler.GetTopPaperUnderMouse();
+                if (paper != null)
+                {
+                    Instantiate(
+                        _stampMarkPrefab,
+                        transform.position,
+                        Quaternion.identity,
+                        null).transform.SetParent(paper.transform);
+                }
+            }
         }
     }
 
     public void StartDrag()
     {
-        Papers.Remove(this);
-        Papers.Add(this);
-        SortPapers();
+        Stamps.Remove(this);
+        Stamps.Add(this);
+        SortStamps();
         _dragged = true;
         _startDragMousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         _startDragPosition = transform.position;
     }
 
-    public static void SortPapers()
+    public static void SortStamps()
     {
-        for (int i = 0; i < Papers.Count; i++)
+        for (int i = 0; i < Stamps.Count; i++)
         {
-            Papers[i].SpriteRenderer.sortingOrder = i;
+            Stamps[i].SpriteRenderer.sortingOrder = i;
         }
     }
 }
