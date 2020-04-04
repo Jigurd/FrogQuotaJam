@@ -1,52 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
 
 public class CombatActor : MonoBehaviour
 {
-    public int Health { get; private set; }
-
 
     [SerializeField]
-    private int _maxHealth = 20;
+    private float _attackCooldown = 0.3f;
 
-    public int MaxHealth { get => _maxHealth;
-        private set { _maxHealth = value; } }
+    private float TimeOfLastAttack = 0;
 
-    public Action OnDamageTaken;
+    [SerializeField]
+    private float _attackRange;
+
+    [SerializeField]
+    private LayerMask _attackMask;
+
+    [SerializeField]
+    private int _damage = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        Health = _maxHealth;
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Health <= 0)
-        {
-            Die();
-        }
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            Damage(5);
-        }
+
     }
 
     /// <summary>
-    /// Take some damage
+    /// Launch an attack at the target position
     /// </summary>
-    /// <param name="damage">How much damage to take</param>
-    public void Damage(int damage)
+    /// <param name="targetPosition">The position the attack is towards</param>
+    public void Attack(Vector3 targetPosition)
     {
-        Health -= damage;
-        OnDamageTaken?.Invoke();
+        //find out what way we are attacking
+        Vector3 dir = (transform.position - targetPosition).normalized;
+        Vector3 attackPosition = dir * _attackRange;
+
+        Debug.DrawRay(transform.position, dir, Color.red, 4);
+        //Gizmos.DrawWireSphere(attackPosition, _attackRange);
+
+        if (Time.time >= TimeOfLastAttack + _attackCooldown)
+        {
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition, _attackRange, _attackMask);
+
+            foreach (Collider2D enemy in enemiesToDamage)
+            {
+                enemy.gameObject.GetComponent<Damageable>().Damage(_damage);
+            }
+        }
     }
 
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
 }

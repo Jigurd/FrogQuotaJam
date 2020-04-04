@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    CombatActor parent;
+    Damageable parent;
 
     SpriteRenderer barSpriteRenderer; 
 
     void Start()
     {
-        parent = transform.parent.gameObject.GetComponent<CombatActor>();
+        parent = transform.parent.gameObject.GetComponent<Damageable>();
         barSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         gameObject.transform.localScale = new Vector3(1f, 0.15f);
