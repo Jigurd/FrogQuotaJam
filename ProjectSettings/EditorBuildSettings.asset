@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 880c8312f8c344c4e9c3da8adf3a26ee
+  - enabled: 1
+    path: Assets/Scenes/DayTransition.unity
+    guid: 467196d0d9ad2f2409d906ed842827a4
   m_configObjects: {}
