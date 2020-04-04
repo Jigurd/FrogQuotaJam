@@ -77,6 +77,11 @@ public class Stamp : MonoBehaviour
     {
         for (int i = 0; i < Stamps.Count; i++)
         {
+            if (Stamps[i] == null)
+            {
+                Stamps.Remove(Stamps[i]);
+                continue;
+            }
             Stamps[i].SpriteRenderer.sortingOrder = i;
         }
     }

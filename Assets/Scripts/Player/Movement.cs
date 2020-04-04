@@ -147,6 +147,7 @@ public class Movement : MonoBehaviour
 
     void VerticalCollisions(ref Vector3 velocity)
     {
+        
         float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y) + skinWidth;
 
@@ -162,7 +163,6 @@ public class Movement : MonoBehaviour
             {
                 velocity.y = (hit.distance - skinWidth) * directionY;
                 rayLength = hit.distance;
-
                 collisions.below = directionY == -1;
                 collisions.above = directionY == 1;
             }

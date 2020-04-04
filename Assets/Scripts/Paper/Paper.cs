@@ -21,6 +21,7 @@ public class Paper : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>();
         _camera = GameObject.Find("OfficeCamera").GetComponent<Camera>();
         SortPapers();
+        SpriteRenderer.color = new Color(Random.Range(0.0f, 0.1f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
     }
 
     // Update is called once per frame
@@ -53,6 +54,11 @@ public class Paper : MonoBehaviour
         int sortingOrder = 0;
         for (int i = 0; i < Papers.Count; i++)
         {
+            if (Papers[i] == null)
+            {
+                Papers.RemoveAt(i);
+                continue;
+            }
             Papers[i].SpriteRenderer.sortingOrder = sortingOrder++;
             foreach (var content in Papers[i].Contents)
             {
