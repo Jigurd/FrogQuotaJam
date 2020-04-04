@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Stamp : MonoBehaviour
@@ -43,14 +44,20 @@ public class Stamp : MonoBehaviour
                 var paper = DragHandler.GetTopPaperUnderMouse();
                 if (paper != null)
                 {
-                    var sr = Instantiate(
-                        _stampMarkPrefab,
-                        transform.position,
-                        Quaternion.identity,
-                        null);
-                    sr.transform.SetParent(paper.transform);
-                    paper.Contents.Add(sr.GetComponent<SpriteRenderer>());
-                    Paper.SortPapers();
+                    // check that the paper is also under the stamp
+                    var ray = new Ray(transform.position + Vector3.forward, Vector3.back);
+                    var hits = Physics2D.GetRayIntersectionAll(ray);
+                    if (hits.AsEnumerable().Select(i => i.collider.GetComponent<Paper>()).Where(i => i == paper).Count() > 0)
+                    {
+                        var stampMark = Instantiate(
+                            _stampMarkPrefab,
+                            transform.position,
+                            Quaternion.identity,
+                            null);
+                        stampMark.transform.SetParent(paper.transform);
+                        paper.Contents.Add(stampMark.GetComponent<SpriteRenderer>());
+                        Paper.SortPapers();
+                    }
                 }
             }
         }
