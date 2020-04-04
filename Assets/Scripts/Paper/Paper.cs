@@ -13,6 +13,7 @@ public class Paper : MonoBehaviour
     private bool _dragged = false;
 
     public SpriteRenderer SpriteRenderer { get; set; }
+    public List<SpriteRenderer> Contents { get; set; } = new List<SpriteRenderer>();
 
     private void Awake()
     {
@@ -49,9 +50,14 @@ public class Paper : MonoBehaviour
 
     public static void SortPapers()
     {
+        int sortingOrder = 0;
         for (int i = 0; i < Papers.Count; i++)
         {
-            Papers[i].SpriteRenderer.sortingOrder = i;
+            Papers[i].SpriteRenderer.sortingOrder = sortingOrder++;
+            foreach (var content in Papers[i].Contents)
+            {
+                content.sortingOrder = sortingOrder++;
+            }
         }
     }
 }

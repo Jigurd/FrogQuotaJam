@@ -29,7 +29,8 @@ public class Stamp : MonoBehaviour
         if (Input.GetMouseButtonUp(0)) _dragged = false;
         if (_dragged)
         {
-            Vector2 position = _startDragPosition + _camera.ScreenToWorldPoint(Input.mousePosition) - _startDragMousePosition;
+            Vector2 delta = _camera.ScreenToWorldPoint(Input.mousePosition) - _startDragMousePosition;
+            Vector2 position = _startDragPosition + new Vector3(delta.x, delta.y);
             transform.position = new Vector3(
                 position.x,
                 position.y,
@@ -42,11 +43,14 @@ public class Stamp : MonoBehaviour
                 var paper = DragHandler.GetTopPaperUnderMouse();
                 if (paper != null)
                 {
-                    Instantiate(
+                    var sr = Instantiate(
                         _stampMarkPrefab,
                         transform.position,
                         Quaternion.identity,
-                        null).transform.SetParent(paper.transform);
+                        null);
+                    sr.transform.SetParent(paper.transform);
+                    paper.Contents.Add(sr.GetComponent<SpriteRenderer>());
+                    Paper.SortPapers();
                 }
             }
         }
