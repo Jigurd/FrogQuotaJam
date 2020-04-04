@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Desk
+    uniqueID: 1675813143
+    locked: 0
+  - name: Paper
+    uniqueID: 549568605
+    locked: 0

@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
         _playButton.onClick.AddListener(() =>
         {
             Debug.Log("Play");
-            SceneManager.LoadScene("OfficeScene");
+            SceneManager.LoadScene("MainScene");
         });
         _quitButton.onClick.AddListener(() =>
         {
