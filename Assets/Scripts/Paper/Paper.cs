@@ -27,6 +27,8 @@ public class Paper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameState.IsPaused) return;
+
         if (Input.GetMouseButtonUp(0)) _dragged = false;
         if (_dragged)
         {

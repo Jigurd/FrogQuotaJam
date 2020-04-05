@@ -34,6 +34,8 @@ public class Storyteller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameState.IsPaused) return;
+
         foreach (var task in _tasks.ToArray())
         {
             task.OnUpdate();

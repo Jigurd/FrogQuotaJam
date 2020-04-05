@@ -6,6 +6,8 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
+        if (GameState.IsPaused) return;
+
         if (Input.GetKeyDown(KeyCode.O)) IsOpen = !IsOpen;
         float x = transform.localScale.x;
         if (IsOpen)
