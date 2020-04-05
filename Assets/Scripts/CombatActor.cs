@@ -19,6 +19,9 @@ public class CombatActor : MonoBehaviour
     [SerializeField]
     private int _damage = 2;
 
+    private Vector3 debugpos2;
+    private Vector3 debugpos1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,16 +40,31 @@ public class CombatActor : MonoBehaviour
     /// <param name="targetPosition">The position the attack is towards</param>
     public void Attack(Vector3 targetPosition)
     {
-        //find out what way we are attacking
-        Vector3 dir = (transform.position - targetPosition).normalized;
-        Vector3 attackPosition = dir * _attackRange;
 
-        Debug.DrawRay(transform.position, dir, Color.red, 4);
-        //Gizmos.DrawWireSphere(attackPosition, _attackRange);
+        Debug.Log(targetPosition);
+        Debug.Log(transform.position);
+
+
+        Vector2 test = new Vector2(targetPosition.x, targetPosition.y);
+
+        //find out what way we are attacking
+        Vector3 dir = ((Vector3)test - transform.position).normalized;
+        Debug.Log(dir);
+
+
+        Vector3 attackPosition = transform.position + (dir*_attackRange);
+
+        debugpos2 = attackPosition;
+
+
+        //Debug.Log(attackPosition);
+        
 
         if (Time.time >= TimeOfLastAttack + _attackCooldown)
         {
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition, _attackRange, _attackMask);
+
+            //Debug.Log(enemiesToDamage.Length);
 
             foreach (Collider2D enemy in enemiesToDamage)
             {
