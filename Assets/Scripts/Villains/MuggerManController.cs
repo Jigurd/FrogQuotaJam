@@ -9,10 +9,18 @@ public class MuggerManController : MonoBehaviour
     [SerializeField] private float _actionRecovery = 0;
     [SerializeField] private Transform _playerTransform = null;
     [SerializeField] private Transform _muggeeTransform = null;
-    [SerializeField] private int _speed = 2;
+
+    private CombatActor _combatActor;
+    private Movement _movement;
     
     private bool _canPerformAction = true;
     private int _movementSpeed;
+
+    private void Start()
+    {
+        _movement = GetComponent<Movement>();
+        _combatActor = GetComponent<CombatActor>();
+    }
 
     private void Update()
     {
@@ -28,8 +36,7 @@ public class MuggerManController : MonoBehaviour
 
     private void TaskFinder()
     {
-        /*
-         */
+
         if (_canPerformAction == false)
             return;
 
@@ -41,31 +48,28 @@ public class MuggerManController : MonoBehaviour
         {
             // if the player is within attack-range attack them
 
-            AttackPlayer();
+            Attack(_playerTransform);
         }
         else if (distanceBetweenMuggerAndPlayer <= _followDistance)
         {
             // if the player is within follow-range chase them
+           
 
-            FindTarget(_playerTransform);
-            transform.position += Vector3.right * _movementSpeed * Time.deltaTime;
+            MoveTowards(_playerTransform);
         }
         else if (distanceBetweenMuggerAndPlayer > _followDistance && Vector2.Distance(transform.position, _muggeeTransform.position) > 1.0f)
         {
+            Debug.Log("Gon getchu");
             // If the player is too far away -> move towards the meme to fuck with
-
-            FindTarget(_muggeeTransform);
-            transform.position += Vector3.right * _movementSpeed * Time.deltaTime;
-            
+            MoveTowards(_muggeeTransform);            
         }
         else if (Vector2.Distance(transform.position, _muggeeTransform.position) <= 1.0f)
         {
             // if the whatever you are trying to fuck with is within range -> fuck with it
-
-            DoTask();
+            Attack(_muggeeTransform);
         }
     }
-    private void FindTarget(Transform t)
+    private void MoveTowards(Transform t)
     {
         if (t == null)
         {
@@ -75,28 +79,30 @@ public class MuggerManController : MonoBehaviour
 
         if (t.position.x - transform.position.x > 0)
         {
-            _movementSpeed = _speed;
+            _movement.velocity.x += _movement.moveSpeed;
         }
         else
         {
-            _movementSpeed = -_speed;
+
+            _movement.velocity.x -= _movement.moveSpeed;
         }
     }
     private void DoTask()
     {
         print("MUGGIN");
     }
-    private void AttackPlayer()
+    private void Attack(Transform target)
     {
         _canPerformAction = false;
 
-        StartCoroutine(Attack());
+        StartCoroutine(AttackPlayer(target));
     }
-    IEnumerator Attack()
+    IEnumerator AttackPlayer(Transform target)
     {
         print("attack animation??");
         yield return new WaitForSeconds(.25f);
         print("KAPOW! le attacke generation");
+        _combatActor.Attack(target.position);
 
         yield return new WaitForSeconds(_actionRecovery);
 

@@ -9,7 +9,7 @@ public class CombatActor : MonoBehaviour
     private float TimeOfLastAttack = 0;
 
     [SerializeField]
-    private float _attackRange = 1.0f;
+    public float AttackRange { get; protected set; }
 
     [SerializeField]
     private LayerMask _attackMask = 0;
@@ -41,29 +41,18 @@ public class CombatActor : MonoBehaviour
     /// <param name="targetPosition">The position the attack is towards</param>
     public void Attack(Vector3 targetPosition)
     {
-
-        Debug.Log(targetPosition);
-        Debug.Log(transform.position);
-
-
         Vector2 test = new Vector2(targetPosition.x, targetPosition.y);
 
         //find out what way we are attacking
         Vector3 dir = ((Vector3)test - transform.position).normalized;
-        Debug.Log(dir);
 
-
-        Vector3 attackPosition = transform.position + (dir*_attackRange);
+        Vector3 attackPosition = transform.position + (dir*AttackRange);
 
         debugpos2 = attackPosition;
 
-
-        //Debug.Log(attackPosition);
-        
-
         if (Time.time >= TimeOfLastAttack + _attackCooldown)
         {
-            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition, _attackRange, _attackMask);
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition, AttackRange, _attackMask);
 
             //Debug.Log(enemiesToDamage.Length);
 
