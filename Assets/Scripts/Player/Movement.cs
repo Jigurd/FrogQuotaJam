@@ -61,6 +61,10 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (GameState.IsPaused)
+        {
+            return;
+        }
         //apply gravity to velocity
         //if we're falling, apply fallTimeMultiplier to fall faster. This skews our jump arc right.
         if (velocity.y < 0)

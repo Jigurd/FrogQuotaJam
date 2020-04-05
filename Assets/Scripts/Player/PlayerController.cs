@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameState.IsPaused)
+        {
+            return;
+        }
+
         _handleMovement();
 
         //attack is possible
