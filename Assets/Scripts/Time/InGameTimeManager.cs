@@ -14,6 +14,8 @@ public class InGameTimeManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameState.IsPaused) return;
+
         Second += Time.deltaTime * _inGameSecondsPerRealLifeSeconds;
         if (Second >= 60)
         {

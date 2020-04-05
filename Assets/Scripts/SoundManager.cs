@@ -16,9 +16,10 @@ public class SoundManager
             var oldVolume = _musicVolume;
             var newVolume = v;
             _musicVolume = newVolume;
-            foreach (var source in _musicSources)
+            foreach (var source in _musicSources.ToArray())
             {
-                source.volume = _musicVolume;
+                if (source == null) _musicSources.Remove(source);
+                else source.volume = _musicVolume;
             }
         };
         SettingsMenu.OnEffectsVolumeChanged += v =>
@@ -26,9 +27,10 @@ public class SoundManager
             var oldVolume = _effectsVolume;
             var newVolume = v;
             _effectsVolume = newVolume;
-            foreach (var source in _effectSources)
+            foreach (var source in _effectSources.ToArray())
             {
-                source.volume = _effectsVolume;
+                if (source == null) _effectSources.Remove(source);
+                else source.volume = _effectsVolume;
             }
         };
     }

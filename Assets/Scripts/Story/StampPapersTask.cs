@@ -44,10 +44,14 @@ public class StampPapersTask : Task
             int count = Random.Range(1, 11);
             for (int i = 0; i < count; i++)
             {
-                // TODO: This is bad.
-                Papers.Add(GameObject.Instantiate(
+                var paper = GameObject.Instantiate(
                     Resources.Load<GameObject>("Prefabs/Paper"),
-                    GameObject.Find("StuffOnDesk").transform).GetComponent<Paper>());
+                    GameObject.Find("StuffOnDesk").transform).GetComponent<Paper>();
+                paper.transform.localPosition = new Vector3(
+                    2.65f - i * 0.01f,
+                    -1.69f - i * 0.02f,
+                    0.0f);
+                Papers.Add(paper);
             }
         }
     }

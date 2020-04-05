@@ -12,10 +12,13 @@ public class Storyteller : MonoBehaviour
 
     private void Awake()
     {
+        GameState.IsPaused = false;
         InGameTimeManager.OnMinute += OnMinute;
         SetNextEventMinute();
+
         if (InGameTimeManager.Day == 1)
         {
+            StartTask();
             var paperPrefab = Resources.Load<GameObject>("Prefabs/SuperHeroBossInstructions");
             var paperGO = Instantiate(paperPrefab, GameObject.Find("StuffOnDesk").transform);
             paperGO.transform.localPosition = new Vector3(-2.34f, -2.47f, 0.0f);
