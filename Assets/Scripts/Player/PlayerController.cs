@@ -2,12 +2,16 @@
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Camera _camera = null;
+    [SerializeField] private float _flyingSpeed = 2.0f;
+    [SerializeField] private float _groundHorizontalAccelerationLerpValue = 4.0f;
+    [SerializeField] private float _groundHorizontalDecelerationLerpValue = 6.0f;
+
     private Movement _movement;
     private SpriteRenderer _sprite;
     private Damageable _damageable;
     private CombatActor _combatActor;
-    [SerializeField]
-    private Camera _camera = null;
+    private bool _isFlying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,45 +30,75 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        _handleMovement();
+        HandleMovement();
 
         //attack is possible
         if (Input.GetButtonDown("Attack"))
         {
-            _attack();
+            Attack();
         }
     }
 
-
-
-    private void _handleMovement()
+    private void HandleMovement()
     {
-        //reset horizontal speed
-        _movement.velocity.x = 0;
-
+        // Stop flying if we hit the ground.
+        if (_isFlying && _movement.collisions.below)
+        {
+            _isFlying = false;
+        }
 
         //if the player is jumping, add jump velocity to jump
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump")) // TODO: Make jump and fly separate buttons
         {
-            _movement.velocity.y += _movement.jumpVelocity;
+            // Start flying
+            _isFlying = false;
+            _movement.velocity.y = _flyingSpeed;
         }
-        //move left
+
+        // Handle left movement.
         if (Input.GetButton("Left"))
         {
-            _movement.velocity.x -= _movement.moveSpeed;
+            // Accelerate left.
+            _movement.velocity.x = Mathf.Lerp(
+                _movement.velocity.x,
+                -_movement.moveSpeed,
+                _groundHorizontalAccelerationLerpValue * Time.deltaTime
+            );
             _sprite.flipX = false;
         }
-        //move right
-        if (Input.GetButton("Right"))
+        else if (_movement.velocity.x < 0)
         {
-            _movement.velocity.x += _movement.moveSpeed;
-            _sprite.flipX = true;
+            // Decelerate left.
+            _movement.velocity.x = Mathf.Lerp(
+                _movement.velocity.x,
+                0.0f,
+                _groundHorizontalDecelerationLerpValue * Time.deltaTime
+            );
         }
 
-
+        // Handle right movement.
+        if (Input.GetButton("Right"))
+        {
+            // Accelerate right.
+            _movement.velocity.x = Mathf.Lerp(
+                _movement.velocity.x,
+                _movement.moveSpeed,
+                _groundHorizontalAccelerationLerpValue * Time.deltaTime
+            );
+            _sprite.flipX = false;
+        }
+        else if (_movement.velocity.x > 0)
+        {
+            // Decelerate right.
+            _movement.velocity.x = Mathf.Lerp(
+                _movement.velocity.x,
+                0.0f,
+                _groundHorizontalDecelerationLerpValue * Time.deltaTime
+            );
+        }
     }
 
-    private void _attack()
+    private void Attack()
     {
         _combatActor.Attack(_camera.ScreenToWorldPoint(Input.mousePosition));
     }

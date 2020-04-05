@@ -56,7 +56,6 @@ public class Movement : MonoBehaviour
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         //print("Gravity: " + gravity + "  Jump Velocity: " + jumpVelocity);
-
     }
 
     void Update()
@@ -70,22 +69,25 @@ public class Movement : MonoBehaviour
         if (velocity.y < 0)
         {
             velocity.y += fallSpeedMultiplier * gravity * Time.deltaTime;
+            bool isGrounded = IsGrounded();
+            if (isGrounded)
+            {
+                velocity.y = 0;
+            }
+            Debug.Log(isGrounded);
         }
         else
         {
-
             velocity.y += gravity * Time.deltaTime;
-
         }
-
 
         //move actor. If we hit the floor, set y-direction velocity to 0
         Move(velocity * Time.deltaTime);
 
-        if (velocity.y > 0)
-        {
-            velocity.y = 0;
-        }
+        //if (velocity.y > 0)
+        //{
+        //    velocity.y = 0;
+        //}
     }
 
     /// <summary>
@@ -106,9 +108,8 @@ public class Movement : MonoBehaviour
         {
             VerticalCollisions(ref velocity);
         }
+
         transform.Translate(velocity);
-
-
     }
 
     void CalculateRaySpacing()
@@ -121,8 +122,6 @@ public class Movement : MonoBehaviour
 
         horizontalRaySpacing = bounds.size.y / (rayCount - 1);
         verticalRaySpacing = bounds.size.x / (rayCount - 1);
-
-
     }
 
     void HorizontalCollisions(ref Vector3 velocity)
@@ -145,14 +144,12 @@ public class Movement : MonoBehaviour
 
                 collisions.left = directionX == -1;
                 collisions.right = directionX == 1;
-
             }
         }
     }
 
     void VerticalCollisions(ref Vector3 velocity)
     {
-        
         float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y) + skinWidth;
 
@@ -172,6 +169,27 @@ public class Movement : MonoBehaviour
                 collisions.above = directionY == 1;
             }
         }
+    }
+
+    bool IsGrounded()
+    {
+        float directionY = -1;
+        float rayLength = skinWidth;
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            //rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+
+            if (hit)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void UpdateRaycastOrigins()
