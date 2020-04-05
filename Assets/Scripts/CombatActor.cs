@@ -11,10 +11,10 @@ public class CombatActor : MonoBehaviour
     private float TimeOfLastAttack = 0;
 
     [SerializeField]
-    private float _attackRange;
+    private float _attackRange = 1.0f;
 
     [SerializeField]
-    private LayerMask _attackMask;
+    private LayerMask _attackMask = 0;
 
     [SerializeField]
     private int _damage = 2;
