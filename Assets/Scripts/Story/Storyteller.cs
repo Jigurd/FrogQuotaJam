@@ -14,6 +14,13 @@ public class Storyteller : MonoBehaviour
     {
         InGameTimeManager.OnMinute += OnMinute;
         SetNextEventMinute();
+        if (InGameTimeManager.Day == 1)
+        {
+            var paperPrefab = Resources.Load<GameObject>("Prefabs/SuperHeroBossInstructions");
+            var paperGO = Instantiate(paperPrefab, GameObject.Find("StuffOnDesk").transform);
+            paperGO.transform.localPosition = new Vector3(-2.34f, -2.47f, 0.0f);
+            paperGO.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 
     private void OnDestroy()
@@ -62,6 +69,5 @@ public class Storyteller : MonoBehaviour
     private void OnMinute(int minute)
     {
         _minutesSinceLastTask++;
-        Debug.Log(_nextTaskMinute - _minutesSinceLastTask);
     }
 }

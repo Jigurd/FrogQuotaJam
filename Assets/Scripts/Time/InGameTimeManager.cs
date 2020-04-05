@@ -24,12 +24,10 @@ public class InGameTimeManager : MonoBehaviour
             {
                 Minute = 0;
                 Hour++;
-                Debug.Log("Hours: " + Hour);
                 if (Hour > 16)
                 {
                     Hour = 9;
                     Day++;
-                    Debug.Log("Day: " + Day);
                     SceneManager.LoadScene("DayTransition");
                 }
             }

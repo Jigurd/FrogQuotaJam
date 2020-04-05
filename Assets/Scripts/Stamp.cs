@@ -40,7 +40,6 @@ public class Stamp : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1))
             {
-                Debug.Log(DragHandler.GetTopPaperUnderMouse());
                 var paper = DragHandler.GetTopPaperUnderMouse();
                 if (paper != null)
                 {
