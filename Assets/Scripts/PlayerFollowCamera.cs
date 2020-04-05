@@ -9,8 +9,10 @@ public class PlayerFollowCamera : MonoBehaviour
     [SerializeField] private Vector3 _groundedOffset = Vector2.zero;
     [SerializeField] private Vector3 _flyingOffset = Vector2.zero;
     [SerializeField] private float _lookAheadVelocityThreshold = 0.15f;
-    [SerializeField] private float _lookAheadAmount = 25.0f;
-    [SerializeField] private float _horizontalLerpValue = 18.4f;
+    [SerializeField] private float _groundedLookAheadAmount = 25.0f;
+    [SerializeField] private float _flyingLookAheadAmount = 25.0f;
+    [SerializeField] private float _groundedHorizontalLerpValue = 18.4f;
+    [SerializeField] private float _flyingHorizontalLerpValue = 18.4f;
     [SerializeField] private float _verticalLerpValue = 4.0f;
 
     private void Update()
@@ -22,11 +24,17 @@ public class PlayerFollowCamera : MonoBehaviour
         {
             if (_playerMovement.velocity.x > 0)
             {
-                lookAhead *= _lookAheadAmount;
+                lookAhead *=
+                    _playerController.IsFlying
+                        ? _flyingLookAheadAmount
+                        : _groundedLookAheadAmount;
             }
             else if (_playerMovement.velocity.x < 0)
             {
-                lookAhead *= -_lookAheadAmount;
+                lookAhead *=
+                    _playerController.IsFlying
+                        ? -_flyingLookAheadAmount
+                        : -_groundedLookAheadAmount;
             }
         }
         else
@@ -49,7 +57,9 @@ public class PlayerFollowCamera : MonoBehaviour
                 transform.position.x,
                 targetPosition.x,
                 //Mathf.Max(1.0f, Mathf.Abs(distance.x)) * _lerpValue * Time.deltaTime),
-                _horizontalLerpValue * Time.deltaTime),
+                (_playerController.IsFlying
+                    ? _flyingHorizontalLerpValue
+                    : _groundedHorizontalLerpValue) * Time.deltaTime),
             Mathf.Lerp(
                 transform.position.y,
                 targetPosition.y,

@@ -20,10 +20,9 @@ public class Movement : MonoBehaviour
     public float timeToJumpApex = .4f;
 
     //controls how fast actor falls
-    [Range(1f, 1.3f)]
     public float fallSpeedMultiplier = 1.1f;
 
-    float gravity;
+    public float gravity;
     public float jumpVelocity;
 
     /// <summary>

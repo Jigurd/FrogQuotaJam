@@ -752,6 +752,7 @@ GameObject:
   - component: {fileID: 803887111}
   - component: {fileID: 803887112}
   - component: {fileID: 803887113}
+  - component: {fileID: 803887114}
   m_Layer: 0
   m_Name: CityCamera
   m_TagString: Untagged
@@ -822,7 +823,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803887110}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6380d731a210af742bbc163a8295fb14, type: 3}
   m_Name: 
@@ -832,8 +833,32 @@ MonoBehaviour:
   _groundedOffset: {x: 0, y: 4.42, z: 0}
   _flyingOffset: {x: 0, y: 0, z: 0}
   _lookAheadVelocityThreshold: 0.43
-  _lookAheadAmount: 1
-  _horizontalLerpValue: 18.4
+  _groundedLookAheadAmount: 3.32
+  _flyingLookAheadAmount: 5.23
+  _groundedHorizontalLerpValue: 7.48
+  _flyingHorizontalLerpValue: 5.01
+  _verticalLerpValue: 8.76
+--- !u!114 &803887114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803887110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6380d731a210af742bbc163a8295fb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 1012274928}
+  _playerController: {fileID: 1012274927}
+  _groundedOffset: {x: 0, y: 4.42, z: 0}
+  _flyingOffset: {x: 0, y: 0, z: 0}
+  _lookAheadVelocityThreshold: 0
+  _groundedLookAheadAmount: 0
+  _flyingLookAheadAmount: 0.934
+  _groundedHorizontalLerpValue: 17.54
+  _flyingHorizontalLerpValue: 5.01
   _verticalLerpValue: 8.76
 --- !u!1 &858688753
 GameObject:
@@ -1279,8 +1304,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028433896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -318.55, y: -16.807, z: 0}
-  m_LocalScale: {x: 90.30618, y: 24.792568, z: 1}
+  m_LocalPosition: {x: -323.7, y: -16.807, z: 0}
+  m_LocalScale: {x: 243.82669, y: 24.792568, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2175,6 +2200,26 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 803887112}
+    - target: {fileID: 5750523502634298891, guid: aac13180fdc3a0c4694ad086e93038d7,
+        type: 3}
+      propertyPath: _flyingFallSpeedMultiplier
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750523502634298891, guid: aac13180fdc3a0c4694ad086e93038d7,
+        type: 3}
+      propertyPath: _flyingGravityMultiplier
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750523502634298891, guid: aac13180fdc3a0c4694ad086e93038d7,
+        type: 3}
+      propertyPath: _flyingSpeed
+      value: 16.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750523502634298891, guid: aac13180fdc3a0c4694ad086e93038d7,
+        type: 3}
+      propertyPath: _flyingFallRate
+      value: 0.03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aac13180fdc3a0c4694ad086e93038d7, type: 3}
 --- !u!1 &1430861755
