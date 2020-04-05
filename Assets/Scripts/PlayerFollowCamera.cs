@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayerFollowCamera : MonoBehaviour
 {
     [SerializeField] private Movement _playerMovement = null;
+    [SerializeField] private PlayerController _playerController = null;
+    [SerializeField] private Vector3 _groundedOffset = Vector2.zero;
+    [SerializeField] private Vector3 _flyingOffset = Vector2.zero;
     [SerializeField] private float _lookAheadVelocityThreshold = 0.15f;
     [SerializeField] private float _lookAheadAmount = 25.0f;
-    [SerializeField] private float _lerpValue = 50.0f;
+    [SerializeField] private float _horizontalLerpValue = 18.4f;
+    [SerializeField] private float _verticalLerpValue = 4.0f;
 
     private void Update()
     {
@@ -31,20 +35,26 @@ public class PlayerFollowCamera : MonoBehaviour
         }
 
         var targetPosition = _playerMovement.transform.position + lookAhead;
-        var distance = targetPosition - transform.position;
+        if (_playerController.IsFlying)
+        {
+            targetPosition += _flyingOffset;
+        }
+        else
+        {
+            targetPosition += _groundedOffset;
+        }
 
-        // This is magic.
         transform.position = new Vector3(
             Mathf.Lerp(
                 transform.position.x,
                 targetPosition.x,
                 //Mathf.Max(1.0f, Mathf.Abs(distance.x)) * _lerpValue * Time.deltaTime),
-                _lerpValue * Time.deltaTime),
+                _horizontalLerpValue * Time.deltaTime),
             Mathf.Lerp(
                 transform.position.y,
                 targetPosition.y,
                 //Mathf.Max(1.0f, Mathf.Abs(distance.y)) * _lerpValue * Time.deltaTime),
-                _lerpValue * Time.deltaTime),
+                _verticalLerpValue * Time.deltaTime),
             transform.position.z
         );
     }

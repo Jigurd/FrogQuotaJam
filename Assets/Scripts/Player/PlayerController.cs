@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _sprite;
     private Damageable _damageable;
     private CombatActor _combatActor;
-    private bool _isFlying = false;
+
+    public bool IsFlying { get; private set; } = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,16 +43,16 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         // Stop flying if we hit the ground.
-        if (_isFlying && _movement.collisions.below)
+        if (IsFlying && _movement.collisions.below)
         {
-            _isFlying = false;
+            IsFlying = false;
         }
 
         //if the player is jumping, add jump velocity to jump
         if (Input.GetButton("Jump")) // TODO: Make jump and fly separate buttons
         {
             // Start flying
-            _isFlying = false;
+            IsFlying = true;
             _movement.velocity.y = _flyingSpeed;
         }
 

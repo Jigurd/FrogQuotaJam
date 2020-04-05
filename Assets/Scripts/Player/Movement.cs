@@ -74,7 +74,6 @@ public class Movement : MonoBehaviour
             {
                 velocity.y = 0;
             }
-            Debug.Log(isGrounded);
         }
         else
         {
@@ -171,7 +170,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    bool IsGrounded()
+    public bool IsGrounded()
     {
         float directionY = -1;
         float rayLength = skinWidth;

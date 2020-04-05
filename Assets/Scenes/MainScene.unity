@@ -828,9 +828,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 1012274928}
+  _playerController: {fileID: 1012274927}
+  _groundedOffset: {x: 0, y: 4.42, z: 0}
+  _flyingOffset: {x: 0, y: 0, z: 0}
   _lookAheadVelocityThreshold: 0.43
   _lookAheadAmount: 1
-  _lerpValue: 18.4
+  _horizontalLerpValue: 18.4
+  _verticalLerpValue: 8.76
 --- !u!1 &858688753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1181,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1012274927 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5750523502634298891, guid: aac13180fdc3a0c4694ad086e93038d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1428905279}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af23e168e0f7461469e1b3b6e82ca29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1012274928 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5750523502634298890, guid: aac13180fdc3a0c4694ad086e93038d7,
@@ -1263,8 +1279,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028433896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -324.16, y: -5.24, z: 0}
-  m_LocalScale: {x: 18.204617, y: 1.6588801, z: 1}
+  m_LocalPosition: {x: -318.55, y: -16.807, z: 0}
+  m_LocalScale: {x: 90.30618, y: 24.792568, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
