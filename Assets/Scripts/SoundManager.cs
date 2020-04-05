@@ -36,7 +36,7 @@ public class SoundManager
 
     public static AudioSource CreateAudioSource(string clipKey)
     {
-        var source = GameObject.Instantiate(new GameObject()).AddComponent<AudioSource>();
+        var source = UnityEngine.GameObject.Instantiate(new UnityEngine.GameObject()).AddComponent<AudioSource>();
         var clip = Resources.Load<AudioClip>(clipKey);
         if (clip == null)
         {

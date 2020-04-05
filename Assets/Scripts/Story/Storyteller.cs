@@ -10,17 +10,21 @@ public class Storyteller : MonoBehaviour
     private float _minutesSinceLastTask = 0;
     private float _nextTaskMinute = 0;
 
+    public static List<GameObject> Civilians;
+
     private void Awake()
     {
         GameState.IsPaused = false;
         InGameTimeManager.OnMinute += OnMinute;
+        Civilians = new List<GameObject>();
+
         SetNextEventMinute();
 
         if (InGameTimeManager.Day == 1)
         {
             StartTask();
-            var paperPrefab = Resources.Load<GameObject>("Prefabs/SuperHeroBossInstructions");
-            var paperGO = Instantiate(paperPrefab, GameObject.Find("StuffOnDesk").transform);
+            var paperPrefab = Resources.Load<UnityEngine.GameObject>("Prefabs/SuperHeroBossInstructions");
+            var paperGO = Instantiate(paperPrefab, UnityEngine.GameObject.Find("StuffOnDesk").transform);
             paperGO.transform.localPosition = new Vector3(-2.34f, -2.47f, 0.0f);
             paperGO.GetComponent<SpriteRenderer>().color = Color.white;
         }

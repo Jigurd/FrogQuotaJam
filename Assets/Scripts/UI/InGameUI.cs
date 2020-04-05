@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
-    [SerializeField] private GameObject _pauseMenu = null;
+    [SerializeField] private UnityEngine.GameObject _pauseMenu = null;
     [SerializeField] private Button _continueButton = null;
     [SerializeField] private Button _mainMenuButton = null;
     [SerializeField] private Button _quitButton = null;

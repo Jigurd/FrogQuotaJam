@@ -7,7 +7,7 @@ public class DragHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (_camera == null) _camera = GameObject.Find("OfficeCamera").GetComponent<Camera>();
+        if (_camera == null) _camera = UnityEngine.GameObject.Find("OfficeCamera").GetComponent<Camera>();
     }
 
     private void Update()

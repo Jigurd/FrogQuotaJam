@@ -6,14 +6,14 @@ public class AyyLmaoManController : MonoBehaviour
 {
     [SerializeField] private float _probeTimer = 0;
     [SerializeField] private float _speed = 0;
-    [SerializeField] private GameObject[] _victims = null;
+    [SerializeField] private UnityEngine.GameObject[] _victims = null;
 
     private float _probeTime = 3;
     private bool _lookingForVictim = true;
     private Vector3 _pointA;
     private Vector3 _pointB;
     private Vector3 _targetPoint;
-    private GameObject _victim;
+    private UnityEngine.GameObject _victim;
 
     private float _distanceBetweenEnemyAndT(Vector3 v3) 
     {

@@ -43,9 +43,9 @@ public class StampPapersTask : Task
             int count = Random.Range(1, 11);
             for (int i = 0; i < count; i++)
             {
-                var paper = GameObject.Instantiate(
-                    Resources.Load<GameObject>("Prefabs/Paper"),
-                    GameObject.Find("StuffOnDesk").transform).GetComponent<Paper>();
+                var paper = UnityEngine.GameObject.Instantiate(
+                    Resources.Load<UnityEngine.GameObject>("Prefabs/Paper"),
+                    UnityEngine.GameObject.Find("StuffOnDesk").transform).GetComponent<Paper>();
                 paper.transform.localPosition = new Vector3(
                     2.65f - i * 0.01f,
                     -1.69f - i * 0.02f,

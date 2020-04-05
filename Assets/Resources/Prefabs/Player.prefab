@@ -73,8 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c759abb609058e47b1fd5717945d139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  moveSpeed: 10
+  moveSpeed: 16.69
   velocity: {x: 0, y: 0, z: 0}
   jumpHeight: 4
   timeToJumpApex: 0.4
@@ -95,6 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af23e168e0f7461469e1b3b6e82ca29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  _flyingSpeed: 9.14
+  _groundHorizontalAccelerationLerpValue: 18.94
+  _groundHorizontalDecelerationLerpValue: 21.04
 --- !u!212 &5102810050621632141
 SpriteRenderer:
   m_ObjectHideFlags: 0
