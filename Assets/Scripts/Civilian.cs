@@ -5,7 +5,7 @@ using UnityEngine;
 public class Civilian : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         Storyteller.Civilians.Add(gameObject);
     }

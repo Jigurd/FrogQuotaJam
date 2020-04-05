@@ -13,6 +13,7 @@ public class DragHandler : MonoBehaviour
     private void Update()
     {
         if (GameState.IsPaused) return;
+        if (GameState.GameMode == GameMode.City) return;
 
         if (Input.GetMouseButtonDown(0))
         {

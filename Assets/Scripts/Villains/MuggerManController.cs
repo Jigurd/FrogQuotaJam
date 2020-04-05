@@ -50,6 +50,7 @@ public class MuggerManController : MonoBehaviour
         }
 
     }
+
     private void MoveTowards(Transform t)
     {
         Vector3 pathToTarget = t.position - transform.position;
@@ -71,10 +72,8 @@ public class MuggerManController : MonoBehaviour
         {
             _movement.velocity.x = distToMove * Time.deltaTime;
         }
-
-
-        //Debug.Log((transform.position - _muggeeTransform.position).magnitude);
     }
+
     private void DoTask()
     {
         print("MUGGIN");
@@ -111,9 +110,8 @@ public class MuggerManController : MonoBehaviour
 
     private void _findVictim()
     {
-        Debug.Log("wtb victim");
         _victimTransform = Storyteller.Civilians
-            .OrderByDescending(civilian => (transform.position - civilian.transform.position).sqrMagnitude)
+            .OrderBy(civilian => (transform.position - civilian.transform.position).sqrMagnitude)
             .FirstOrDefault().transform;
 
         _state = State.ChaseVictim;
@@ -121,6 +119,8 @@ public class MuggerManController : MonoBehaviour
 
     private void _mug()
     {
+        _movement.velocity.x = 0;
+
         if (_victimTransform == null)
         {
             _state = State.FindVictim;

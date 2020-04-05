@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Camera _camera = null;
     [SerializeField] private float _flyingSpeed = 2.0f;
+    [SerializeField] private float _launchSpeed = 0.3f;
     [SerializeField] private float _flyingFallRate = 0.3f;
     [SerializeField] private float _groundHorizontalAccelerationLerpValue = 4.0f;
     [SerializeField] private float _groundHorizontalDecelerationLerpValue = 6.0f;
@@ -18,16 +19,27 @@ public class PlayerController : MonoBehaviour
     private CombatActor _combatActor;
     private float _originalGravity;
 
-    public bool IsFlying { get; private set; } = false;
+    public bool IsFlying { get; private set; } = true;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _movement = GetComponent<Movement>();
         _sprite = GetComponent<SpriteRenderer>();
         _damageable = GetComponent<Damageable>();
         _combatActor = GetComponent<CombatActor>();
 
+        GameState.OnGameModeSet[GameMode.City] += OnCityGameModeSet;
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        GameState.OnGameModeSet[GameMode.City] -= OnCityGameModeSet;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         _originalGravity = _movement.gravity;
     }
 
@@ -48,8 +60,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCityGameModeSet()
+    {
+        IsFlying = true;
+        float angle = Random.Range(0, 2.0f * Mathf.PI);
+        _movement.velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * _launchSpeed;
+    }
+
     private void HandleMovement()
     {
+        if (IsFlying)
+        {
+            _movement.gravity = 0.0f;
+        }
+        else
+        {
+            _movement.gravity = _originalGravity;
+        }
+
         // Stop flying if we hit the ground.
         if (IsFlying && _movement.collisions.below)
         {
@@ -89,7 +117,7 @@ public class PlayerController : MonoBehaviour
             // Accelerate down.
             _movement.velocity.y = Mathf.Lerp(
                 _movement.velocity.y,
-                -_movement.MoveSpeed,
+                -_flyingSpeed,
                 _flyingVerticalAccelerationLerpValue * Time.deltaTime
             );
         }
