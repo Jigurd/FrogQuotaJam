@@ -9,7 +9,6 @@ public class StampPapersTask : Task
 
     public override bool IsComplete()
     {
-        Debug.Log("Complete?");
         if (Papers == null) return false;
         foreach (var paper in Papers)
         {

@@ -36,9 +36,7 @@ public class Storyteller : MonoBehaviour
     {
         foreach (var task in _tasks.ToArray())
         {
-            Debug.Log("UPDATING MAH BOY");
             task.OnUpdate();
-            Debug.Log("CHECKING IF MAH BOY IS COMPLETE YO");
             if (task.IsComplete())
             {
                 task.OnFinished();
