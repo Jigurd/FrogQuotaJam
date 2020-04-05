@@ -8,7 +8,8 @@ public class Movement : MonoBehaviour
     Vector3 _startPosition;
 
     //sprite stuff
-    public SpriteRenderer sprite;
+    private SpriteRenderer _sprite;
+
     [SerializeField]
     public float moveSpeed;
 
@@ -49,7 +50,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        _sprite = GetComponent<SpriteRenderer>();
         collision = GetComponent<BoxCollider2D>();
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);

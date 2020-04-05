@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _sprite;
     private Damageable _damageable;
     private CombatActor _combatActor;
+    [SerializeField]
+    private Camera _camera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +63,6 @@ public class PlayerController : MonoBehaviour
 
     private void _attack()
     {
-        _combatActor.Attack(transform.position+ new Vector3(0.5f, 0, 0));
+        _combatActor.Attack(_camera.ScreenToWorldPoint(Input.mousePosition));
     }
 }
