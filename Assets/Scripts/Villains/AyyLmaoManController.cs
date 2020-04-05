@@ -28,6 +28,12 @@ public class AyyLmaoManController : MonoBehaviour
     }
     private void Update()
     {
+
+        if (GameState.IsPaused)
+        {
+            return;
+        }
+
         Move();
 
         if (!_lookingForVictim)
