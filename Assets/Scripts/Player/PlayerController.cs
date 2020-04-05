@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Damageable _damageable;
     private CombatActor _combatActor;
     [SerializeField]
-    private Camera _camera;
+    private Camera _camera = null;
 
     // Start is called before the first frame update
     void Start()
