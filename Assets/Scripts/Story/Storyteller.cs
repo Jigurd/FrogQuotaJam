@@ -43,7 +43,7 @@ public class Storyteller : MonoBehaviour
         }
 
         //spawn some civvies
-        int civsToSpawn = (int)System.Math.Ceiling((double)InGameTimeManager.Day / 2);
+        int civsToSpawn = (int)Random.Range(1, 5);
 
         for (int i = 0; i < civsToSpawn; i++)
         {
@@ -77,7 +77,7 @@ public class Storyteller : MonoBehaviour
             StartTask();
         }
 
-        if (_minutesSinceLastMugger == _nextMuggerMinute)
+        if (_minutesSinceLastMugger == _nextMuggerMinute && Civilians.Count>0)
         {
             _minutesSinceLastMugger = 0;
             _nextMuggerMinute = Random.Range(_minMinutesBetweenMuggers, _maxMinutesBetweenMuggers);
@@ -134,7 +134,7 @@ public class Storyteller : MonoBehaviour
         var dist = (transform.position - _cityCamera.transform.position).z;
 
         //find out what side to spawn them on
-        int leftSide = Random.Range(0, 1);
+        int leftSide = Random.Range(0, 2);
 
         float xPosToSpawnAt;
 
