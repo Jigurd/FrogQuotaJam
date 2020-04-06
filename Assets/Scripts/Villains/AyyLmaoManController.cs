@@ -31,16 +31,11 @@ public class AyyLmaoManController : MonoBehaviour
     }
     private void Update()
     {
-<<<<<<< HEAD
-        //print(Random.Range(0, _victims.Length));
-=======
-
         if (GameState.IsPaused)
         {
             return;
         }
 
->>>>>>> 18bff30d8a0527bb5ea8c3c06b976b5ed17b4b0e
         Move();
         if (_lookingAtVictim)
             Probe();
@@ -68,12 +63,15 @@ public class AyyLmaoManController : MonoBehaviour
         _probeTimer -= Time.deltaTime;
         if (_probeTimer <= 0)
         {
+            // Random.Range more like Random.xd
             _victim = _victims[Random.Range(0, _victims.Length)];
             _lineUpStartTime = Time.time;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity);
             if (hit.collider == _victim.GetComponent<BoxCollider2D>())
             {
+                print(hit.transform.name);
+
                 _lookingForVictim = false;
                 _probeTimer = _probeTime;
                 StartCoroutine(WaitBeforeProbe());
