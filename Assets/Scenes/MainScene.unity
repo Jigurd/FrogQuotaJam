@@ -1148,6 +1148,7 @@ MonoBehaviour:
   _outsideWindow: {fileID: 0}
   _groundedOffset: {x: 0, y: 4.42, z: 0}
   _flyingOffset: {x: 0, y: 0, z: 0}
+  _outsideWindowOffset: {x: 0, y: 0, z: 0}
   _lookAheadVelocityThreshold: 0.43
   _groundedLookAheadAmount: 3.32
   _flyingLookAheadAmount: 5.23
@@ -1171,6 +1172,7 @@ MonoBehaviour:
   _outsideWindow: {fileID: 378733079}
   _groundedOffset: {x: 0, y: 4.42, z: 0}
   _flyingOffset: {x: 0, y: 0, z: 0}
+  _outsideWindowOffset: {x: 0, y: -1.5, z: 0}
   _lookAheadVelocityThreshold: 0
   _groundedLookAheadAmount: 0
   _flyingLookAheadAmount: 0.934

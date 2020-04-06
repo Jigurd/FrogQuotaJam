@@ -9,6 +9,7 @@ public class PlayerFollowCamera : MonoBehaviour
     [SerializeField] private OutsideWindow _outsideWindow = null;
     [SerializeField] private Vector3 _groundedOffset = Vector2.zero;
     [SerializeField] private Vector3 _flyingOffset = Vector2.zero;
+    [SerializeField] private Vector3 _outsideWindowOffset = Vector2.zero;
     [SerializeField] private float _lookAheadVelocityThreshold = 0.15f;
     [SerializeField] private float _groundedLookAheadAmount = 25.0f;
     [SerializeField] private float _flyingLookAheadAmount = 25.0f;
@@ -98,6 +99,6 @@ public class PlayerFollowCamera : MonoBehaviour
     private void OfficeModeUpdate()
     {
         if (_outsideWindow == null) return;
-        _targetPosition = _outsideWindow.transform.position;
+        _targetPosition = _outsideWindow.transform.position + _outsideWindowOffset;
     }
 }
