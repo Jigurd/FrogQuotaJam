@@ -73,11 +73,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c759abb609058e47b1fd5717945d139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 16.69
+  Speed: 20
   velocity: {x: 0, y: 0, z: 0}
   jumpHeight: 4
   timeToJumpApex: 0.4
   fallSpeedMultiplier: 1.1
+  gravity: 0
   jumpVelocity: 0
   collisionMask:
     serializedVersion: 2
@@ -96,8 +97,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
   _flyingSpeed: 9.14
+  _launchSpeed: 0.3
+  _flyingFallRate: 0.3
   _groundHorizontalAccelerationLerpValue: 18.94
   _groundHorizontalDecelerationLerpValue: 21.04
+  _flyingHorizontalAccelerationLerpValue: 4
+  _flyingHorizontalDecelerationLerpValue: 6
+  _flyingVerticalAccelerationLerpValue: 4
+  _flyingVerticalDecelerationLerpValue: 6
 --- !u!212 &5102810050621632141
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -159,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackCooldown: 0.3
-  _attackRange: 0.3
+  AttackRange: 0
   _attackMask:
     serializedVersion: 2
     m_Bits: 512
-  _damage: 2
+  _damage: 5

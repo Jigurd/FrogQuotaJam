@@ -15,7 +15,7 @@ TagManager:
   - 
   - Terrain
   - Enemy
-  - 
+  - Objective
   - 
   - 
   - 
@@ -53,6 +53,15 @@ TagManager:
   - name: Stamp
     uniqueID: 668564705
     locked: 0
+  - name: Background
+    uniqueID: 4245292259
+    locked: 0
+  - name: Buildings
+    uniqueID: 3452140515
+    locked: 0
   - name: Front
     uniqueID: 1167654031
+    locked: 0
+  - name: UI
+    uniqueID: 641596971
     locked: 0

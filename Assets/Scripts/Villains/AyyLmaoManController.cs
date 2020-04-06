@@ -6,19 +6,23 @@ public class AyyLmaoManController : MonoBehaviour
 {
     [SerializeField] private float _probeTimer = 0;
     [SerializeField] private float _speed = 0;
+
     [SerializeField] private float _probeRange = 1.25f;
     [SerializeField] private GameObject[] _victims = null;
+
 
     // This GameObject needs a collider.
     private GameObject _victim;
     private Vector3 _pointA;
     private Vector3 _pointB;
     private Vector3 _targetPoint;
+
     private bool _lookingForVictim = true;
     private bool _lookingAtVictim = false;
     private float _probeTime = 3;
     private float _lineUpStartTime = 0;
     private float _distanceBetweenEnemyAndT(Vector3 v3)
+
     {
         return Vector3.Distance(transform.position, v3);
     }
