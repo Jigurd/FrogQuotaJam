@@ -56,6 +56,12 @@ public class Stamp : MonoBehaviour
                             null);
                         stampMark.transform.SetParent(paper.transform);
                         paper.Contents.Add(stampMark.GetComponent<SpriteRenderer>());
+                        stampMark.GetComponent<SpriteRenderer>().color = new Color(
+                            SpriteRenderer.color.r,
+                            SpriteRenderer.color.g,
+                            SpriteRenderer.color.b,
+                            0.87f
+                        );
                         Paper.SortPapers();
                     }
                 }

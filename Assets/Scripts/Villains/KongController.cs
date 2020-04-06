@@ -5,51 +5,49 @@ using UnityEngine;
 public class KongController : MonoBehaviour
 {
     [SerializeField] Transform _target = null;
-    [SerializeField] Transform _player = null;
     [SerializeField] int _speed = 1;
-    [SerializeField] private float _attackDistance = 2.25f;
     [SerializeField] private float _actionRecovery = 1.25f;
 
     private bool _canPerformAction = true;
+    private GameObject _building;
 
-
+    private void Start()
+    {
+        _building = transform.parent.gameObject;
+        transform.parent = null;
+    }
     private void Update()
     {
-        DoIt();
+        if (!_canPerformAction)
+            return;
+        Climb();
     }
 
     private void Climb()
     {
         if (transform.position.y >= _target.position.y)
         {
-            print("WEEWOO");
+            if (_building)
+            {
+                StartCoroutine(KongSmash());
+            }
+            else
+            {
+                GetComponentInChildren<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                Destroy(gameObject, 3.5f);
+                _canPerformAction = false;
+            }
             return; 
         }
 
         transform.position += Vector3.up * _speed * Time.deltaTime;
     }
-    private void DoIt()
+    private IEnumerator KongSmash()
     {
-        if (!_canPerformAction)
-            return;
-
-        float distanceBetweenPlayerAndKong = Vector2.Distance(transform.position, _player.position);
-
-        if (distanceBetweenPlayerAndKong <= _attackDistance)
-        {
-            StartCoroutine(RecoverAction());
-            return;
-        }
-
-        Climb();
-    }
-    IEnumerator RecoverAction()
-    {
-        print("ATTACK!");
-        
         _canPerformAction = false;
+        print("YEET! ME KONG ME SMASH");
+        _building.GetComponent<Damageable>().Damage(5);
         yield return new WaitForSeconds(_actionRecovery);
-
         _canPerformAction = true;
     }
 }

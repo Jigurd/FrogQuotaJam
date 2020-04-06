@@ -17,8 +17,8 @@ public class Highscores : MonoBehaviour
     
     [SerializeField] private int _currentScore = 0;
     [SerializeField] private string _username = "";
-    [SerializeField] private GameObject _usernameSubmitObject;
-    [SerializeField] private Text _usernameChosenByPlayer;
+    [SerializeField] private GameObject _usernameSubmitObject = null;
+    [SerializeField] private Text _usernameChosenByPlayer = null;
 
     private void Awake()
     {
