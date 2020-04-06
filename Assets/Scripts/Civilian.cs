@@ -59,7 +59,7 @@ public class Civilian : MonoBehaviour
         _targetPos = new Vector3(randomX, transform.position.y);
 
         _state = State.Move;
-        Debug.Log(_targetPos + " New location found!");
+        //Debug.Log(_targetPos + " New location found!");
     }
 
     private void _move()
