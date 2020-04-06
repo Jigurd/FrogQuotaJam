@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 1094478071852491025}
   - component: {fileID: 8373179170178711145}
   - component: {fileID: 1368597138801848575}
-  - component: {fileID: 5921528234770383444}
   m_Layer: 9
   m_Name: Mugger
   m_TagString: Untagged
@@ -195,8 +194,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1167654031
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7fa0868312abe0647a1e5a2efc76b824, type: 3}
   m_Color: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
@@ -303,21 +302,3 @@ MonoBehaviour:
   _followDistance: 5
   _actionRecovery: 0.25
   _victimTransform: {fileID: 0}
---- !u!114 &5921528234770383444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8570970957489155661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eebafa9da51fce54293af17dc49587c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _attackCooldown: 0.3
-  AttackRange: 0
-  _attackMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  _damage: 2

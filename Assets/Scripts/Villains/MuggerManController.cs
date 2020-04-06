@@ -90,6 +90,7 @@ public class MuggerManController : MonoBehaviour
         //if we are within attack range, start mugging
         if ((transform.position - _victimTransform.position).magnitude < _combatActor.AttackRange)
         {
+            _movement.velocity.x = 0;
             _state = State.Mug;
         }
     }
@@ -110,8 +111,6 @@ public class MuggerManController : MonoBehaviour
 
     private void _mug()
     {
-        _movement.velocity.x = 0;
-
         if (_victimTransform == null)
         {
             _state = State.FindVictim;
@@ -130,7 +129,6 @@ public class MuggerManController : MonoBehaviour
     {
         FindVictim,
         ChaseVictim,
-        Mug,
-        Idle
+        Mug
     }
 }
