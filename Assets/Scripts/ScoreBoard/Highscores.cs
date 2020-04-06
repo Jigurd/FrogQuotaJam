@@ -11,38 +11,30 @@ public class Highscores : MonoBehaviour
     const string _webURL = "http://dreamlo.com/lb/";
 
     public static Highscores Instance;
-    public Highscore[] highscoresList;
+    public Highscore[] HighscoresList;
 
     private DisplayHighscores _highscoresDisplay;
     
-    [SerializeField] private int _currentScore = 0;
     [SerializeField] private string _username = "";
     [SerializeField] private GameObject _usernameSubmitObject = null;
     [SerializeField] private Text _usernameChosenByPlayer = null;
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
         Instance = this;
         _highscoresDisplay = GetComponent<DisplayHighscores>();
 
         //AddNewHighScore("lamo", 420);
         //AddNewHighScore("xd", 69);
         //DownloadHighscores();
-
-        //AddNewHighScore("lamo" , 69);
     }
     public void SetUsername()
     {
         _username = _usernameChosenByPlayer.text.ToString();
 
         // Maybe do this differently
-        AddNewHighScore(_username, _currentScore);
+        AddNewHighScore(_username, ScoreTracker.Instance.CurrentScore);
         _usernameSubmitObject.SetActive(false);
-    }
-    public void UpdateCurrentScore(int addScore)
-    {
-        _currentScore += addScore;
     }
     public static void AddNewHighScore(string username, int score)
     {
@@ -79,7 +71,7 @@ public class Highscores : MonoBehaviour
         {
             //print(www.downloadHandler.text);
             FormatHighscores(www.downloadHandler.text);
-            _highscoresDisplay.OnHighscoresDownloaded(highscoresList);
+            _highscoresDisplay.OnHighscoresDownloaded(HighscoresList);
         }
         else
         {
@@ -89,14 +81,14 @@ public class Highscores : MonoBehaviour
     private void FormatHighscores(string textStream)
     {
         string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-        highscoresList = new Highscore[entries.Length];
+        HighscoresList = new Highscore[entries.Length];
 
         for (int i = 0; i < entries.Length; i++)
         {
             string[] entryInfo = entries[i].Split(new char[] { '|' });
             string username = entryInfo[0];
             int score = int.Parse(entryInfo[1]);
-            highscoresList[i] = new Highscore(username, score);
+            HighscoresList[i] = new Highscore(username, score);
             //print(highscoresList[i].Username + ": " + highscoresList[i].Score);
         }
     }
