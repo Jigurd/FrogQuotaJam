@@ -1150,6 +1150,7 @@ MonoBehaviour:
   _username: 
   _usernameSubmitObject: {fileID: 1128889010}
   _usernameChosenByPlayer: {fileID: 922429865}
+  _mainMenuButton: {fileID: 2146690018}
 --- !u!114 &1240670515
 MonoBehaviour:
   m_ObjectHideFlags: 0
