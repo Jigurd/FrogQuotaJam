@@ -57,6 +57,12 @@ public class StampPapersTask : Task
                     0.0f);
                 Papers.Add(paper);
             }
+            Object.FindObjectOfType<Door>().IsOpen = true;
+        }
+
+        if (_minutesSinceTaskStart > 6)
+        {
+            Object.FindObjectOfType<Door>().IsOpen = false;
         }
     }
 }
