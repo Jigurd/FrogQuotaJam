@@ -129,7 +129,7 @@ public class MuggerManController : MonoBehaviour
 
     private void OnDie()
     {
-        Highscores.Instance.UpdateCurrentScore(100);
+        ScoreTracker.Instance.UpdateCurrentScore(100);
     }
 
     private enum State
