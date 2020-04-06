@@ -44,6 +44,7 @@ public class MuggerManController : MonoBehaviour
 
     private void MoveTowards(Transform t)
     {
+        if (t == null) return;
         Vector3 pathToTarget = t.position - transform.position;
 
         float distToMove;

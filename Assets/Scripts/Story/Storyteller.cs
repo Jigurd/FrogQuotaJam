@@ -36,8 +36,8 @@ public class Storyteller : MonoBehaviour
         if (InGameTimeManager.Day == 1)
         {
             StartTask();
-            var paperPrefab = Resources.Load<UnityEngine.GameObject>("Prefabs/SuperHeroBossInstructions");
-            var paperGO = Instantiate(paperPrefab, UnityEngine.GameObject.Find("StuffOnDesk").transform);
+            var paperPrefab = Resources.Load<GameObject>("Prefabs/SuperHeroBossInstructions");
+            var paperGO = Instantiate(paperPrefab, GameObject.Find("StuffOnDesk").transform);
             paperGO.transform.localPosition = new Vector3(-2.34f, -2.47f, 0.0f);
             paperGO.GetComponent<SpriteRenderer>().color = Color.white;
         }

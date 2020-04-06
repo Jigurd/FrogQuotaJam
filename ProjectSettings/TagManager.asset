@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2367446491
+    locked: 0
+  - name: Desk
+    uniqueID: 4035981477
+    locked: 0
+  - name: Paper
+    uniqueID: 220069435
+    locked: 0
+  - name: Stamp
+    uniqueID: 3804113805
+    locked: 0
+  - name: Building
+    uniqueID: 1594630359
+    locked: 0
+  - name: Character
+    uniqueID: 4022718229
+    locked: 0

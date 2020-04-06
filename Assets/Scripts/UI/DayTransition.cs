@@ -16,7 +16,7 @@ public class DayTransition : MonoBehaviour
         });
         _quitButton.onClick.AddListener(() =>
         {
-            Application.Quit();
+            SceneManager.LoadScene("HighscoreScene");
         });
         _text.text =
             "day " + (InGameTimeManager.Day - 1) + " done\n" +
