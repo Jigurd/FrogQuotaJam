@@ -97,7 +97,7 @@ public class Civilian : MonoBehaviour
 
     private void OnDie()
     {
-        Highscores.Instance.UpdateCurrentScore(-300);
+        ScoreTracker.Instance.UpdateCurrentScore(-300);
     }
 
     private enum State
