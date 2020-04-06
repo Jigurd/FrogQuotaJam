@@ -85,6 +85,7 @@ public class MuggerManController : MonoBehaviour
 
     private void _chaseVictim()
     {
+        if (_victimTransform == null) return;
         MoveTowards(_victimTransform);
 
         //if we are within attack range, start mugging
