@@ -7,7 +7,7 @@ public class DisplayHighscores : MonoBehaviour
 {
     [SerializeField] private float _highscoreRefreshRate = 30;
     [SerializeField] private Text[] _highscoreText = null;
-    [SerializeField] private Text _lastScore;
+    [SerializeField] private Text _lastScore = null;
 
     public static Highscores HighscoreManager;
 

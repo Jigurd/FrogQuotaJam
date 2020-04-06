@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6708941003545711520}
   - component: {fileID: 5589326680085510247}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6275282417129382820}
   - component: {fileID: 2737742250793446623}
   - component: {fileID: 3935068384425772704}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4563803647344645154}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4151898851914930544}
   - component: {fileID: 6951800027537745732}
   m_Layer: 0
-  m_Name: KingKongMan
+  m_Name: KongMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,4 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
+  _player: {fileID: 0}
   _speed: 2
+  _attackDistance: 2.25
+  _actionRecovery: 1.25
