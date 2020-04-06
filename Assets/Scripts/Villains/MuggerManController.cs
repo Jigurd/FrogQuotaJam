@@ -98,6 +98,7 @@ public class MuggerManController : MonoBehaviour
     {
         if (Storyteller.Civilians.Count == 0)
         {
+            
             return;
         }
 
@@ -105,8 +106,9 @@ public class MuggerManController : MonoBehaviour
             .OrderBy(civilian => (transform.position - civilian.transform.position).sqrMagnitude)
             .FirstOrDefault().transform;
 
-        Debug.Log(_victimTransform);
+        //Debug.Log(_victimTransform);
         _state = State.ChaseVictim;
+
     }
 
     private void _mug()

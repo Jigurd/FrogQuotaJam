@@ -54,12 +54,6 @@ public class Storyteller : MonoBehaviour
     private void OnDestroy()
     {
         InGameTimeManager.OnMinute -= OnMinute;
-
-        foreach (GameObject civ in Civilians)
-        {
-            Civilians.Remove(civ);
-            Destroy(civ);
-        }
     }
 
     // Update is called once per frame

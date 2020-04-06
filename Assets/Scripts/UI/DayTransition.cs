@@ -19,13 +19,9 @@ public class DayTransition : MonoBehaviour
             Application.Quit();
         });
         _text.text =
-            "day " + (InGameTimeManager.Day - 1) + " = done\n" +
-            "day " + InGameTimeManager.Day + " = begin??? :^)\n" +
-            "summary:\nsomething something\n" +
-            "you did [bad|good] 42069\n" +
-            "no raise\n" +
-            "no promotion\n" +
-            "no suspicion\n" +
-            "wholesome 100 big chungus";
+            "day " + (InGameTimeManager.Day - 1) + " done\n" +
+            "day " + InGameTimeManager.Day + " is not available due to technical issues :(\n" +
+            "please retire.";
+        _continueButton.gameObject.SetActive(false);
     }
 }

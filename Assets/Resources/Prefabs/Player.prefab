@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackCooldown: 0.3
-  AttackRange: 0
+  AttackRange: 0.5
   _attackMask:
     serializedVersion: 2
     m_Bits: 512
-  _damage: 5
+  _damage: 7
