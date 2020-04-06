@@ -1148,6 +1148,7 @@ MonoBehaviour:
   _outsideWindow: {fileID: 0}
   _groundedOffset: {x: 0, y: 4.42, z: 0}
   _flyingOffset: {x: 0, y: 0, z: 0}
+  _outsideWindowOffset: {x: 0, y: 0, z: 0}
   _lookAheadVelocityThreshold: 0.43
   _groundedLookAheadAmount: 3.32
   _flyingLookAheadAmount: 5.23
@@ -1171,6 +1172,7 @@ MonoBehaviour:
   _outsideWindow: {fileID: 378733079}
   _groundedOffset: {x: 0, y: 4.42, z: 0}
   _flyingOffset: {x: 0, y: 0, z: 0}
+  _outsideWindowOffset: {x: 0, y: -1.5, z: 0}
   _lookAheadVelocityThreshold: 0
   _groundedLookAheadAmount: 0
   _flyingLookAheadAmount: 0.934
@@ -1335,8 +1337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minMinutesBetweenTasks: 41
   _maxMinutesBetweenTasks: 161
-  _minMinutesBetweenMuggers: 11
-  _maxMinutesBetweenMuggers: 41
+  _minMinutesBetweenMuggers: 20
+  _maxMinutesBetweenMuggers: 30
   _muggerPrefab: {fileID: 8570970957489155661, guid: 0ad14138a7bf2e3449c2a79c96fd0c66,
     type: 3}
   _civlianPrefab: {fileID: 3755669140631315955, guid: 22c97a137df42584095fa5c61df20771,
@@ -2224,7 +2226,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.46, y: 1.73}
   m_EdgeRadius: 0
 --- !u!114 &1351309433
 MonoBehaviour:
@@ -2966,7 +2968,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.46, y: 1.73}
   m_EdgeRadius: 0
 --- !u!1 &1561897107
 GameObject:

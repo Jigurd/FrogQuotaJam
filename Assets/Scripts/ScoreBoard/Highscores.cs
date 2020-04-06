@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Highscores : MonoBehaviour
@@ -18,6 +19,7 @@ public class Highscores : MonoBehaviour
     [SerializeField] private string _username = "";
     [SerializeField] private GameObject _usernameSubmitObject = null;
     [SerializeField] private Text _usernameChosenByPlayer = null;
+    [SerializeField] private Button _mainMenuButton = null;
 
     private void Awake()
     {
@@ -27,6 +29,11 @@ public class Highscores : MonoBehaviour
         //AddNewHighScore("lamo", 420);
         //AddNewHighScore("xd", 69);
         //DownloadHighscores();
+
+        _mainMenuButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("MainMenu");
+        });
     }
     public void SetUsername()
     {
