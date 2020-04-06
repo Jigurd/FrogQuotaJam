@@ -28,7 +28,12 @@ public class StampPapersTask : Task
     public override void OnFinished()
     {
         base.OnFinished();
-        foreach (var paper in Papers.ToArray()) Object.Destroy(paper.gameObject);
+        foreach (var paper in Papers.ToArray())
+        {
+            Object.Destroy(paper.gameObject);
+            ScoreTracker.Instance.UpdateCurrentScore(50);
+        }
+
         Papers = null;
     }
 
