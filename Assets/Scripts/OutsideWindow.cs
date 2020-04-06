@@ -36,6 +36,10 @@ public class OutsideWindow : MonoBehaviour
 
     private void OnOfficeGameModeSet()
     {
+        if (_player==null)
+        {
+            _player = FindObjectOfType<PlayerController>().gameObject;
+        }
         _player.SetActive(false);
         _player.transform.position = transform.position;
     }
