@@ -6,7 +6,7 @@ public class Stamp : MonoBehaviour
 {
     public static List<Stamp> Stamps { get; set; } = new List<Stamp>();
 
-    [SerializeField] private GameObject _stampMarkPrefab = null;
+    [SerializeField] private UnityEngine.GameObject _stampMarkPrefab = null;
 
     private Camera _camera;
     private Vector3 _startDragMousePosition;
@@ -19,7 +19,7 @@ public class Stamp : MonoBehaviour
     {
         Stamps.Add(this);
         SpriteRenderer = GetComponent<SpriteRenderer>();
-        _camera = GameObject.Find("OfficeCamera").GetComponent<Camera>();
+        _camera = UnityEngine.GameObject.Find("OfficeCamera").GetComponent<Camera>();
         SortStamps();
     }
 

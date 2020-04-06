@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3494079168203207116}
   - component: {fileID: 8760089243969934105}
   - component: {fileID: 5968164608187979618}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5353092456126826123}
   - component: {fileID: 1812149247198967599}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,3 +205,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _probeTimer: 3
   _speed: 2
+  _probeRange: 1.25
+  _victims: []

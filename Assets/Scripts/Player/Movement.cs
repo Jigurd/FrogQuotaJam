@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer _sprite;
 
     [SerializeField]
-    public float moveSpeed;
+    public float Speed=20;
 
     public Vector3 velocity;
 
@@ -55,6 +55,8 @@ public class Movement : MonoBehaviour
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         //print("Gravity: " + gravity + "  Jump Velocity: " + jumpVelocity);
+
+        CalculateRaySpacing();
     }
 
     void Update()
@@ -110,7 +112,7 @@ public class Movement : MonoBehaviour
         transform.Translate(velocity);
     }
 
-    void CalculateRaySpacing()
+    private void CalculateRaySpacing()
     {
         Bounds bounds = collision.bounds;
         bounds.Expand(skinWidth * -2);

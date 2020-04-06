@@ -18,7 +18,7 @@ public class Paper : MonoBehaviour
     {
         Papers.Add(this);
         SpriteRenderer = GetComponent<SpriteRenderer>();
-        _camera = GameObject.Find("OfficeCamera").GetComponent<Camera>();
+        _camera = UnityEngine.GameObject.Find("OfficeCamera").GetComponent<Camera>();
         SortPapers();
         SpriteRenderer.color = new Color(Random.Range(0.0f, 0.1f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
     }

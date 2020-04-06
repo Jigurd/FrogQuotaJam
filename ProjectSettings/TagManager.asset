@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - Terrain
-  - Enemy
+  - 
+  - 
   - 
   - 
   - 
@@ -40,22 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Desk
-    uniqueID: 1675813143
-    locked: 0
-  - name: Paper
-    uniqueID: 549568605
-    locked: 0
-  - name: PaperContents
-    uniqueID: 2000965655
-    locked: 0
-  - name: Stamp
-    uniqueID: 668564705
-    locked: 0
-  - name: Front
-    uniqueID: 1167654031
-    locked: 0
-  - name: UI
-    uniqueID: 571902803
     locked: 0
