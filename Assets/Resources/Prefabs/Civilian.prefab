@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c759abb609058e47b1fd5717945d139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 20
+  Speed: 40
   velocity: {x: 0, y: 0, z: 0}
   jumpHeight: 4
   timeToJumpApex: 0.4
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c99a27208a06204aa41543e2cd75df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CityCamera: {fileID: 0}
 --- !u!1 &3755669141147681294
 GameObject:
   m_ObjectHideFlags: 0
