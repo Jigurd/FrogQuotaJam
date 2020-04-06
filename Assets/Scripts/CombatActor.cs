@@ -17,9 +17,6 @@ public class CombatActor : MonoBehaviour
     [SerializeField]
     private int _damage = 2;
 
-    private Vector3 debugpos2;
-    private Vector3 debugpos1;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +45,6 @@ public class CombatActor : MonoBehaviour
 
         Vector3 attackPosition = transform.position + (dir*AttackRange);
 
-        debugpos2 = attackPosition;
 
         if (Time.time >= TimeOfLastAttack + _attackCooldown)
         {

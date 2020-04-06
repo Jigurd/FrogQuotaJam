@@ -59,7 +59,7 @@ public class MuggerManController : MonoBehaviour
             distToMove = _movement.Speed * Math.Sign(pathToTarget.x);
         }
 
-        if (t.position.x - transform.position.x > 0)
+        if (Math.Abs(t.position.x - transform.position.x) > 0)
         {
             _movement.velocity.x = distToMove * Time.deltaTime;
         }
@@ -73,9 +73,8 @@ public class MuggerManController : MonoBehaviour
     }
     IEnumerator AttackPlayer(Transform target)
     {
-        print("attack animation??");
         yield return new WaitForSeconds(.25f);
-        print("KAPOW! le attacke generation");
+
         _combatActor.Attack(target.position);
 
         yield return new WaitForSeconds(_actionRecovery);
@@ -106,6 +105,7 @@ public class MuggerManController : MonoBehaviour
             .OrderBy(civilian => (transform.position - civilian.transform.position).sqrMagnitude)
             .FirstOrDefault().transform;
 
+        Debug.Log(_victimTransform);
         _state = State.ChaseVictim;
     }
 
