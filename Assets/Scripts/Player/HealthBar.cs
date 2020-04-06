@@ -33,6 +33,6 @@ public class HealthBar : MonoBehaviour
 
         barSpriteRenderer.color = newColor;
 
-        Debug.Log(barSpriteRenderer.color.g);
+        //Debug.Log(barSpriteRenderer.color.g);
     }
 }
