@@ -10,7 +10,7 @@ public class Highscores : MonoBehaviour
     const string _publicCode = "5e8a4f0b403c2d12b8bd0d97";
     const string _webURL = "http://dreamlo.com/lb/";
 
-    public static Highscores instance;
+    public static Highscores Instance;
     public Highscore[] highscoresList;
 
     private DisplayHighscores _highscoresDisplay;
@@ -22,7 +22,8 @@ public class Highscores : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        DontDestroyOnLoad(this);
+        Instance = this;
         _highscoresDisplay = GetComponent<DisplayHighscores>();
 
         //AddNewHighScore("lamo", 420);
@@ -45,8 +46,8 @@ public class Highscores : MonoBehaviour
     }
     public static void AddNewHighScore(string username, int score)
     {
-        instance._highscoresDisplay.ShowYourLatestScore(username, score);
-        instance.StartCoroutine(instance.UploadNewHighscore(username, score));
+        Instance._highscoresDisplay.ShowYourLatestScore(username, score);
+        Instance.StartCoroutine(Instance.UploadNewHighscore(username, score));
     }
     IEnumerator UploadNewHighscore(string username, int score)
     {

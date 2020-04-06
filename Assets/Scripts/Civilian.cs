@@ -25,6 +25,7 @@ public class Civilian : MonoBehaviour
     {
         _movement = GetComponent<Movement>();
         Storyteller.Civilians.Add(gameObject);
+        GetComponent<Damageable>().OnDie += OnDie;
         _state = State.FindLocation;
     }
 
@@ -92,6 +93,11 @@ public class Civilian : MonoBehaviour
         {
             _state = State.FindLocation;
         }
+    }
+
+    private void OnDie()
+    {
+        Highscores.Instance.UpdateCurrentScore(-300);
     }
 
     private enum State

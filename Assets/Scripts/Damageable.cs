@@ -8,7 +8,7 @@ public class Damageable : MonoBehaviour
 {
     public int Health { get; private set; }
 
-
+    public Action OnDie;
 
     [SerializeField]
     private int _maxHealth = 20;
@@ -51,6 +51,8 @@ public class Damageable : MonoBehaviour
 
     private void Die()
     {
+        OnDie?.Invoke();
         Destroy(gameObject);
+        
     }
 }

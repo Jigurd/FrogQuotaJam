@@ -18,7 +18,7 @@ public class HighscoreTester : MonoBehaviour
 
                 // RandomXDize score
                 score = Random.Range(1, 100000);
-                Highscores.instance.UpdateCurrentScore(100);
+                Highscores.Instance.UpdateCurrentScore(100);
             }
 
 

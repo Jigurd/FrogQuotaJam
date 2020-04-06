@@ -21,7 +21,7 @@ public class MuggerManController : MonoBehaviour
     {
         _movement = GetComponent<Movement>();
         _combatActor = GetComponent<CombatActor>();
-
+        GetComponent<Damageable>().OnDie += OnDie;
     }
 
     private void Update()
@@ -123,6 +123,11 @@ public class MuggerManController : MonoBehaviour
         {
             _state = State.ChaseVictim;
         }
+    }
+
+    private void OnDie()
+    {
+        Highscores.Instance.UpdateCurrentScore(100);
     }
 
     private enum State

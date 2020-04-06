@@ -110,6 +110,7 @@ public class Storyteller : MonoBehaviour
     private void OnMinute(int minute)
     {
         _minutesSinceLastTask++;
+        _minutesSinceLastMugger++;
     }
 
     private void SpawnMugger()
