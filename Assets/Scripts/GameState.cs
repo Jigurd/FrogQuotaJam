@@ -3,12 +3,13 @@ using System.Collections.Generic;
 
 public enum GameMode
 {
+    None,
     City,
     Office
 }
 public class GameState
 {
-    private static GameMode _gameMode = GameMode.Office;
+    private static GameMode _gameMode = GameMode.None;
 
     public static Dictionary<GameMode, Action> OnGameModeSet { get; set; }
     public static bool IsPaused { get; set; } = false;

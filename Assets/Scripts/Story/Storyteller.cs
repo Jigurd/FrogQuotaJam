@@ -15,6 +15,8 @@ public class Storyteller : MonoBehaviour
     private void Awake()
     {
         GameState.IsPaused = false;
+        GameState.GameMode = GameMode.None;
+        GameState.GameMode = GameMode.Office;
         InGameTimeManager.OnMinute += OnMinute;
         Civilians = new List<GameObject>();
 
