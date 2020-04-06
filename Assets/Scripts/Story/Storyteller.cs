@@ -10,6 +10,9 @@ public class Storyteller : MonoBehaviour
     private float _minutesSinceLastTask = 0;
     private float _nextTaskMinute = 0;
 
+    private float _minutesSinceLastPeril = 0;
+    private float _nextPerilMinute = 0;
+
     public static List<GameObject> Civilians;
 
     private void Awake()

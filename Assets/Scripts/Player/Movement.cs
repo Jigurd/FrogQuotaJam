@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer _sprite;
 
     [SerializeField]
-    public float MoveSpeed=20;
+    public float Speed=20;
 
     public Vector3 velocity;
 

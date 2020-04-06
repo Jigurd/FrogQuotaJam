@@ -31,14 +31,6 @@ public class MuggerManController : MonoBehaviour
             return;
         }
 
-        Do();
-
-        //print(Vector2.Distance(transform.position, _playerTransform.position));
-    }
-
-    private void Do()
-    {
-
         if (_canPerformAction == false)
             return;
 
@@ -48,7 +40,6 @@ public class MuggerManController : MonoBehaviour
             case State.ChaseVictim: _chaseVictim(); break;
             case State.Mug: _mug(); break;
         }
-
     }
 
     private void MoveTowards(Transform t)
@@ -58,14 +49,14 @@ public class MuggerManController : MonoBehaviour
         float distToMove;
 
         //if we are closer to target than our speed
-        if (Math.Abs(pathToTarget.x) > _movement.MoveSpeed)
+        if (Math.Abs(pathToTarget.x) > _movement.Speed)
         {
             //we will move our distance
             distToMove = pathToTarget.x;
         }
         else
         {
-            distToMove = _movement.MoveSpeed * Math.Sign(pathToTarget.x);
+            distToMove = _movement.Speed * Math.Sign(pathToTarget.x);
         }
 
         if (t.position.x - transform.position.x > 0)
@@ -74,10 +65,6 @@ public class MuggerManController : MonoBehaviour
         }
     }
 
-    private void DoTask()
-    {
-        print("MUGGIN");
-    }
     private void Attack(Transform target)
     {
         _canPerformAction = false;
@@ -105,11 +92,15 @@ public class MuggerManController : MonoBehaviour
         {
             _state = State.Mug;
         }
-
     }
 
     private void _findVictim()
     {
+        if (Storyteller.Civilians.Count == 0)
+        {
+            return;
+        }
+
         _victimTransform = Storyteller.Civilians
             .OrderBy(civilian => (transform.position - civilian.transform.position).sqrMagnitude)
             .FirstOrDefault().transform;
@@ -125,9 +116,13 @@ public class MuggerManController : MonoBehaviour
         {
             _state = State.FindVictim;
         }
-        else
+        else if ((transform.position - _victimTransform.position).magnitude < _combatActor.AttackRange)
         {
             Attack(_victimTransform);
+        }
+        else
+        {
+            _state = State.ChaseVictim;
         }
     }
 
@@ -135,6 +130,7 @@ public class MuggerManController : MonoBehaviour
     {
         FindVictim,
         ChaseVictim,
-        Mug
+        Mug,
+        Idle
     }
 }

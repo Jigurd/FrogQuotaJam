@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
             // Accelerate left.
             _movement.velocity.x = Mathf.Lerp(
                 _movement.velocity.x,
-                -_movement.MoveSpeed,
+                -_movement.Speed,
                 (IsFlying
                     ? _flyingHorizontalAccelerationLerpValue
                     : _groundHorizontalAccelerationLerpValue) * Time.deltaTime
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
             // Accelerate right.
             _movement.velocity.x = Mathf.Lerp(
                 _movement.velocity.x,
-                _movement.MoveSpeed,
+                _movement.Speed,
                 (IsFlying
                     ? _flyingHorizontalAccelerationLerpValue
                     : _groundHorizontalAccelerationLerpValue) * Time.deltaTime
