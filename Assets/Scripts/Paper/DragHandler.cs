@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class DragHandler : MonoBehaviour
@@ -14,6 +12,9 @@ public class DragHandler : MonoBehaviour
 
     private void Update()
     {
+        if (GameState.IsPaused) return;
+        if (GameState.GameMode == GameMode.City) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             var closestStamp = GetTopStampUnderMouse();

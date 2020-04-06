@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider2D))]
 public class Paper : MonoBehaviour
@@ -27,6 +26,8 @@ public class Paper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameState.IsPaused) return;
+
         if (Input.GetMouseButtonUp(0)) _dragged = false;
         if (_dragged)
         {

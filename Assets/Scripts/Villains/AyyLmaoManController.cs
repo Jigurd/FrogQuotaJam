@@ -31,7 +31,16 @@ public class AyyLmaoManController : MonoBehaviour
     }
     private void Update()
     {
+<<<<<<< HEAD
         //print(Random.Range(0, _victims.Length));
+=======
+
+        if (GameState.IsPaused)
+        {
+            return;
+        }
+
+>>>>>>> 18bff30d8a0527bb5ea8c3c06b976b5ed17b4b0e
         Move();
         if (_lookingAtVictim)
             Probe();

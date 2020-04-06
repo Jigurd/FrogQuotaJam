@@ -12,8 +12,20 @@ public class Storyteller : MonoBehaviour
 
     private void Awake()
     {
+        GameState.IsPaused = false;
+        GameState.GameMode = GameMode.None;
+        GameState.GameMode = GameMode.Office;
         InGameTimeManager.OnMinute += OnMinute;
         SetNextEventMinute();
+
+        if (InGameTimeManager.Day == 1)
+        {
+            StartTask();
+            var paperPrefab = Resources.Load<GameObject>("Prefabs/SuperHeroBossInstructions");
+            var paperGO = Instantiate(paperPrefab, GameObject.Find("StuffOnDesk").transform);
+            paperGO.transform.localPosition = new Vector3(-2.34f, -2.47f, 0.0f);
+            paperGO.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 
     private void OnDestroy()
@@ -24,11 +36,11 @@ public class Storyteller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameState.IsPaused) return;
+
         foreach (var task in _tasks.ToArray())
         {
-            Debug.Log("UPDATING MAH BOY");
             task.OnUpdate();
-            Debug.Log("CHECKING IF MAH BOY IS COMPLETE YO");
             if (task.IsComplete())
             {
                 task.OnFinished();
@@ -62,6 +74,5 @@ public class Storyteller : MonoBehaviour
     private void OnMinute(int minute)
     {
         _minutesSinceLastTask++;
-        Debug.Log(_nextTaskMinute - _minutesSinceLastTask);
     }
 }

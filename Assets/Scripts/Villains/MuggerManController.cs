@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MuggerManController : MonoBehaviour
@@ -17,6 +16,11 @@ public class MuggerManController : MonoBehaviour
 
     private void Update()
     {
+        if (GameState.IsPaused)
+        {
+            return;
+        }
+
         TaskFinder();
 
         //print(Vector2.Distance(transform.position, _playerTransform.position));

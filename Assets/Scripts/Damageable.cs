@@ -28,6 +28,11 @@ public class Damageable : MonoBehaviour
 
     void Update()
     {
+        if (GameState.IsPaused)
+        {
+            return;
+        }
+
         if (Health <= 0)
         {
             Die();

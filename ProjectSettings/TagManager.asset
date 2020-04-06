@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Terrain
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Stamp
     uniqueID: 668564705
+    locked: 0
+  - name: Front
+    uniqueID: 1167654031
     locked: 0
