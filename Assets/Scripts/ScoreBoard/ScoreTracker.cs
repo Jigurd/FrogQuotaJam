@@ -9,6 +9,8 @@ public class ScoreTracker : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         DontDestroyOnLoad(this);
     }
 
