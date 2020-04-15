@@ -16,7 +16,7 @@ public class OutsideWindow : MonoBehaviour
     private void OnDestroy()
     {
         GameState.OnGameModeSet[GameMode.City] -= OnCityGameModeSet;
-        GameState.OnGameModeSet[GameMode.Office] += OnOfficeGameModeSet;
+        GameState.OnGameModeSet[GameMode.Office] -= OnOfficeGameModeSet;
     }
 
     private void Update()
@@ -38,7 +38,7 @@ public class OutsideWindow : MonoBehaviour
     {
         if (_player==null)
         {
-            _player = FindObjectOfType<PlayerController>().gameObject;
+            _player = GameObject.Find("Player");
         }
         _player.SetActive(false);
         _player.transform.position = transform.position;
