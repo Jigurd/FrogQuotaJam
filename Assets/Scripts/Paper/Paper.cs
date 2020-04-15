@@ -32,6 +32,10 @@ public class Paper : MonoBehaviour
         if (_dragged)
         {
             Vector2 position = _startDragPosition + _camera.ScreenToWorldPoint(Input.mousePosition) - _startDragMousePosition;
+            if (position.x > 3f) position.x = 3f;
+            if (position.x < -3f) position.x = -3f;
+            if (position.y > -1.5f) position.y = -1.5f;
+            if (position.y < -3.5f) position.y = -3.5f;
             transform.position = new Vector3(
                 position.x,
                 position.y,

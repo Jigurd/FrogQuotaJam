@@ -33,6 +33,10 @@ public class Stamp : MonoBehaviour
         {
             Vector2 delta = _camera.ScreenToWorldPoint(Input.mousePosition) - _startDragMousePosition;
             Vector2 position = _startDragPosition + new Vector3(delta.x, delta.y);
+            if (position.x > 3.6f) position.x = 3.6f;
+            if (position.x < -3.6) position.x = -3.6f;
+            if (position.y > .3f) position.y = .3f;
+            if (position.y < -4.4f) position.y = -4.4f;
             transform.position = new Vector3(
                 position.x,
                 position.y,
