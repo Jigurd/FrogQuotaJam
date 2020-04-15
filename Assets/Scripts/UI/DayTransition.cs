@@ -22,6 +22,6 @@ public class DayTransition : MonoBehaviour
             "day " + (InGameTimeManager.Day - 1) + " done\n" +
             "day " + InGameTimeManager.Day + " is not available due to technical issues :(\n" +
             "please retire.";
-        _continueButton.gameObject.SetActive(false);
+       // _continueButton.gameObject.SetActive(false);
     }
 }

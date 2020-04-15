@@ -54,6 +54,7 @@ public class Storyteller : MonoBehaviour
     private void OnDestroy()
     {
         InGameTimeManager.OnMinute -= OnMinute;
+        GameState.GameMode = GameMode.None;
     }
 
     // Update is called once per frame

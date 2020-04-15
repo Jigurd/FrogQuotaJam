@@ -11,6 +11,12 @@ public class CameraResizer : MonoBehaviour
         GameState.OnGameModeSet[GameMode.City] += OnCityGameModeSet;
     }
 
+    private void OnDestroy()
+    {
+        GameState.OnGameModeSet[GameMode.Office] -= OnOfficeGameModeSet;
+        GameState.OnGameModeSet[GameMode.City] -= OnCityGameModeSet;
+    }
+
     private void OnOfficeGameModeSet()
     {
         _cityCamera.rect = new Rect(0.0f, 0.0f, 0.39f, 1.0f);

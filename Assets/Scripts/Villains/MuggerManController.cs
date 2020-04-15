@@ -76,11 +76,13 @@ public class MuggerManController : MonoBehaviour
     {
         yield return new WaitForSeconds(.25f);
 
-        _combatActor.Attack(target.position);
+        if (target != null)
+        {
+            _combatActor.Attack(target.position);
 
-        yield return new WaitForSeconds(_actionRecovery);
-
-        _canPerformAction = true;
+            yield return new WaitForSeconds(_actionRecovery);
+            _canPerformAction = true;
+        }
     }
 
     private void _chaseVictim()
@@ -110,7 +112,6 @@ public class MuggerManController : MonoBehaviour
 
         //Debug.Log(_victimTransform);
         _state = State.ChaseVictim;
-
     }
 
     private void _mug()
