@@ -18,7 +18,8 @@ public class Damageable : MonoBehaviour
 
     public Action OnDamageTaken;
 
-
+    [SerializeField]
+    private GameObject _actionBubblePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,10 @@ public class Damageable : MonoBehaviour
     public void Damage(int damage)
     {
         Health -= damage;
+
+        //create bubble effect
+        Instantiate(_actionBubblePrefab, transform.position, Quaternion.identity);
+
         OnDamageTaken?.Invoke();
     }
 

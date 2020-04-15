@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Text
   - 
   - 
   - 
@@ -58,4 +58,7 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 4022718229
+    locked: 0
+  - name: Effects
+    uniqueID: 2473181003
     locked: 0

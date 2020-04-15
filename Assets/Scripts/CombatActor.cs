@@ -20,7 +20,7 @@ public class CombatActor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -38,12 +38,10 @@ public class CombatActor : MonoBehaviour
     /// <param name="targetPosition">The position the attack is towards</param>
     public void Attack(Vector3 targetPosition)
     {
-        Vector2 test = new Vector2(targetPosition.x, targetPosition.y);
-
         //find out what way we are attacking
-        Vector3 dir = ((Vector3)test - transform.position).normalized;
+        Vector3 dir = (targetPosition - transform.position).normalized;
 
-        Vector3 attackPosition = transform.position + (dir*AttackRange);
+        Vector3 attackPosition = transform.position + (dir * AttackRange);
 
 
         if (Time.time >= TimeOfLastAttack + _attackCooldown)
@@ -58,5 +56,4 @@ public class CombatActor : MonoBehaviour
             }
         }
     }
-
 }

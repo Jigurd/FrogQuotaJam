@@ -171,3 +171,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _damage: 7
+  _actionBubblePrefab: {fileID: 8289231973537485399, guid: 9e275375d6a5bda44a316d2f4ef65472,
+    type: 3}
